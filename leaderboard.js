@@ -11,18 +11,18 @@ Leaderboard.getRandomScore = function () {
   return Math.floor(Math.random() * 10) * 5;
 };
 Leaderboard.resetPlayers = function () {
-  Players.remove({});
-  var names = [
-    'Ada Lovelace',
-    'Grace Hopper',
-    'Marie Curie',
-    'Carl Friedrich Gauss',
-    'Nikola Tesla',
-    'Claude Shannon'
-  ];
-  for (var i = 0; i < names.length; i += 1) {
-    Players.insert({name: names[i], score: Leaderboard.getRandomScore()});
-  }
+  // Players.remove({});
+  // var names = [
+  //   'Ada Lovelace',
+  //   'Grace Hopper',
+  //   'Marie Curie',
+  //   'Carl Friedrich Gauss',
+  //   'Nikola Tesla',
+  //   'Claude Shannon'
+  // ];
+  // for (var i = 0; i < names.length; i += 1) {
+  //   Players.insert({name: names[i], score: Leaderboard.getRandomScore()});
+  // }
 };
 Leaderboard.randomizeScores = function () {
   Players.find().forEach(function (player) {
@@ -99,13 +99,13 @@ if (Meteor.isClient) {
       Players.update(this._id, {$inc: {score: -5}});
       return false;
     },
-    'click .remove': function (event, template) {
-      var self = this;
-      $(template.find('tr')).fadeOut('fast', function () {
-        Players.remove(self._id);
-      });
-      return false;
-    },
+    // 'click .remove': function (event, template) {
+    //   var self = this;
+    //   $(template.find('tr')).fadeOut('fast', function () {
+    //     Players.remove(self._id);
+    //   });
+    //   return false;
+    // },
     'click': function () {
       AmplifiedSession.set('selected_player', this._id);
     }
